@@ -1,12 +1,12 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component, inject} from '@angular/core';
+import {CarService} from './inject';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
+  templateUrl: `./app.html`,
 })
 export class App {
-  protected readonly title = signal('Learning');
+  carService = inject(CarService);
+
+  display = this.carService.getCars().join(' ⭐️ ');
 }
